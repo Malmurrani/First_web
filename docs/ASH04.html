@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Age_Group,Ethnicity,Disease,Number,Rate,DHB,Year
+0,00 to 04,Other,Asthma,182,1018,Auckland,Jun-20
+1,00 to 04,Maori,Asthma,67,1971,Auckland,Jun-20
+2,00 to 04,Pacific,Asthma,134,3131,Auckland,Jun-20
+3,00 to 04,Total_Auck,Asthma,383,1499,Auckland,Jun-20
+4,00 to 04,Other,Gastroenteritis/dehydration,234,1309,Auckland,Jun-20
+5,00 to 04,Maori,Gastroenteritis/dehydration,37,1088,Auckland,Jun-20
+6,00 to 04,Pacific,Gastroenteritis/dehydration,50,1168,Auckland,Jun-20
+7,00 to 04,Total_Auck,Gastroenteritis/dehydration,321,1256,Auckland,Jun-20
+8,00 to 04,Other,Upper_respiratory_infections,159,890,Auckland,Jun-20
+9,00 to 04,Maori,Upper_respiratory_infections,36,1059,Auckland,Jun-20
+10,00 to 04,Pacific,Upper_respiratory_infections,79,1846,Auckland,Jun-20
+11,00 to 04,Total_Auck,Upper_respiratory_infections,274,1072,Auckland,Jun-20
+12,00 to 04,Other,Pneumonia,87,487,Auckland,Jun-20
+13,00 to 04,Maori,Pneumonia,23,676,Auckland,Jun-20
+14,00 to 04,Pacific,Pneumonia,62,1449,Auckland,Jun-20
+15,00 to 04,Total_Auck,Pneumonia,172,673,Auckland,Jun-20
+16,00 to 04,Other,Dental_conditions,55,308,Auckland,Jun-20
+17,00 to 04,Maori,Dental_conditions,18,529,Auckland,Jun-20
+18,00 to 04,Pacific,Dental_conditions,50,1168,Auckland,Jun-20
+19,00 to 04,Total_Auck,Dental_conditions,123,481,Auckland,Jun-20
+20,00 to 04,Other,Cellulitis,49,274,Auckland,Jun-20
+21,00 to 04,Maori,Cellulitis,20,588,Auckland,Jun-20
+22,00 to 04,Pacific,Cellulitis,44,1028,Auckland,Jun-20
+23,00 to 04,Total_Auck,Cellulitis,113,442,Auckland,Jun-20
+24,00 to 04,Other,Lower_respiratory_infections,24,134,Auckland,Jun-20
+25,00 to 04,Maori,Lower_respiratory_infections,9,265,Auckland,Jun-20
+26,00 to 04,Pacific,Lower_respiratory_infections,27,631,Auckland,Jun-20
+27,00 to 04,Total_Auck,Lower_respiratory_infections,60,235,Auckland,Jun-20
+28,00 to 04,Other,Dermatitis_and_eczema,20,112,Auckland,Jun-20
+29,00 to 04,Maori,Dermatitis_and_eczema,8,235,Auckland,Jun-20
+30,00 to 04,Pacific,Dermatitis_and_eczema,14,327,Auckland,Jun-20
+31,00 to 04,Total_Auck,Dermatitis_and_eczema,42,164,Auckland,Jun-20
+32,00 to 04,Other,Constipation,25,140,Auckland,Jun-20
+33,00 to 04,Maori,Constipation,4,118,Auckland,Jun-20
+34,00 to 04,Pacific,Constipation,7,164,Auckland,Jun-20
+35,00 to 04,Total_Auck,Constipation,36,141,Auckland,Jun-20
+36,00 to 04,Other,GORD,12,67,Auckland,Jun-20
+37,00 to 04,Maori,GORD,0,0,Auckland,Jun-20
+38,00 to 04,Pacific,GORD,2,47,Auckland,Jun-20
+39,00 to 04,Total_Auck,GORD,14,55,Auckland,Jun-20
+40,00 to 04,Other,Upper_respiratory_infections,147,734,Counties_Manukau,Jun-20
+41,00 to 04,Maori,Upper_respiratory_infections,80,793,Counties_Manukau,Jun-20
+42,00 to 04,Pacific,Upper_respiratory_infections,212,1806,Counties_Manukau,Jun-20
+43,00 to 04,Total_Counties,Upper_respiratory_infections,439,1048,Counties_Manukau,Jun-20
+44,00 to 04,Other,Asthma,110,549,Counties_Manukau,Jun-20
+45,00 to 04,Maori,Asthma,115,1140,Counties_Manukau,Jun-20
+46,00 to 04,Pacific,Asthma,174,1482,Counties_Manukau,Jun-20
+47,00 to 04,Total_Counties,Asthma,399,953,Counties_Manukau,Jun-20
+48,00 to 04,Other,Gastroenteritis/dehydration,170,848,Counties_Manukau,Jun-20
+49,00 to 04,Maori,Gastroenteritis/dehydration,64,634,Counties_Manukau,Jun-20
+50,00 to 04,Pacific,Gastroenteritis/dehydration,118,1005,Counties_Manukau,Jun-20
+51,00 to 04,Total_Counties,Gastroenteritis/dehydration,352,841,Counties_Manukau,Jun-20
+52,00 to 04,Other,Cellulitis,53,264,Counties_Manukau,Jun-20
+53,00 to 04,Maori,Cellulitis,76,753,Counties_Manukau,Jun-20
+54,00 to 04,Pacific,Cellulitis,163,1388,Counties_Manukau,Jun-20
+55,00 to 04,Total_Counties,Cellulitis,292,697,Counties_Manukau,Jun-20
+56,00 to 04,Other,Dental_conditions,78,389,Counties_Manukau,Jun-20
+57,00 to 04,Maori,Dental_conditions,68,674,Counties_Manukau,Jun-20
+58,00 to 04,Pacific,Dental_conditions,110,937,Counties_Manukau,Jun-20
+59,00 to 04,Total_Counties,Dental_conditions,256,611,Counties_Manukau,Jun-20
+60,00 to 04,Other,Pneumonia,52,259,Counties_Manukau,Jun-20
+61,00 to 04,Maori,Pneumonia,34,337,Counties_Manukau,Jun-20
+62,00 to 04,Pacific,Pneumonia,102,869,Counties_Manukau,Jun-20
+63,00 to 04,Total_Counties,Pneumonia,188,449,Counties_Manukau,Jun-20
+64,00 to 04,Other,Lower_respiratory_infections,22,110,Counties_Manukau,Jun-20
+65,00 to 04,Maori,Lower_respiratory_infections,23,228,Counties_Manukau,Jun-20
+66,00 to 04,Pacific,Lower_respiratory_infections,65,554,Counties_Manukau,Jun-20
+67,00 to 04,Total_Counties,Lower_respiratory_infections,110,263,Counties_Manukau,Jun-20
+68,00 to 04,Other,Dermatitis_and_eczema,8,40,Counties_Manukau,Jun-20
+69,00 to 04,Maori,Dermatitis_and_eczema,33,327,Counties_Manukau,Jun-20
+70,00 to 04,Pacific,Dermatitis_and_eczema,51,434,Counties_Manukau,Jun-20
+71,00 to 04,Total_Counties,Dermatitis_and_eczema,92,220,Counties_Manukau,Jun-20
+72,00 to 04,Other,Vaccine_preventable_MMR,4,20,Counties_Manukau,Jun-20
+73,00 to 04,Maori,Vaccine_preventable_MMR,18,178,Counties_Manukau,Jun-20
+74,00 to 04,Pacific,Vaccine_preventable_MMR,23,196,Counties_Manukau,Jun-20
+75,00 to 04,Total_Counties,Vaccine_preventable_MMR,45,107,Counties_Manukau,Jun-20
+76,00 to 04,Other,Constipation,21,105,Counties_Manukau,Jun-20
+77,00 to 04,Maori,Constipation,5,50,Counties_Manukau,Jun-20
+78,00 to 04,Pacific,Constipation,8,68,Counties_Manukau,Jun-20
+79,00 to 04,Total_Counties,Constipation,34,81,Counties_Manukau,Jun-20
+80,00 to 04,Other,Asthma,221,756,Waitemata,Jun-20
+81,00 to 04,Maori,Asthma,125,1855,Waitemata,Jun-20
+82,00 to 04,Pacific,Asthma,95,2334,Waitemata,Jun-20
+83,00 to 04,Total_Waitemata,Asthma,441,1101,Waitemata,Jun-20
+84,00 to 04,Other,Gastroenteritis/dehydration,258,883,Waitemata,Jun-20
+85,00 to 04,Maori,Gastroenteritis/dehydration,47,697,Waitemata,Jun-20
+86,00 to 04,Pacific,Gastroenteritis/dehydration,56,1376,Waitemata,Jun-20
+87,00 to 04,Total_Waitemata,Gastroenteritis/dehydration,361,902,Waitemata,Jun-20
+88,00 to 04,Other,Upper_respiratory_infections,195,667,Waitemata,Jun-20
+89,00 to 04,Maori,Upper_respiratory_infections,56,831,Waitemata,Jun-20
+90,00 to 04,Pacific,Upper_respiratory_infections,45,1106,Waitemata,Jun-20
+91,00 to 04,Total_Waitemata,Upper_respiratory_infections,296,739,Waitemata,Jun-20
+92,00 to 04,Other,Pneumonia,124,424,Waitemata,Jun-20
+93,00 to 04,Maori,Pneumonia,30,445,Waitemata,Jun-20
+94,00 to 04,Pacific,Pneumonia,41,1007,Waitemata,Jun-20
+95,00 to 04,Total_Waitemata,Pneumonia,195,487,Waitemata,Jun-20
+96,00 to 04,Other,Dental_conditions,90,308,Waitemata,Jun-20
+97,00 to 04,Maori,Dental_conditions,32,475,Waitemata,Jun-20
+98,00 to 04,Pacific,Dental_conditions,32,786,Waitemata,Jun-20
+99,00 to 04,Total_Waitemata,Dental_conditions,154,385,Waitemata,Jun-20
+100,00 to 04,Other,Cellulitis,58,198,Waitemata,Jun-20
+101,00 to 04,Maori,Cellulitis,28,415,Waitemata,Jun-20
+102,00 to 04,Pacific,Cellulitis,42,1032,Waitemata,Jun-20
+103,00 to 04,Total_Waitemata,Cellulitis,128,320,Waitemata,Jun-20
+104,00 to 04,Other,Lower_respiratory_infections,54,185,Waitemata,Jun-20
+105,00 to 04,Maori,Lower_respiratory_infections,23,341,Waitemata,Jun-20
+106,00 to 04,Pacific,Lower_respiratory_infections,25,614,Waitemata,Jun-20
+107,00 to 04,Total_Waitemata,Lower_respiratory_infections,102,255,Waitemata,Jun-20
+108,00 to 04,Other,Dermatitis_and_eczema,17,58,Waitemata,Jun-20
+109,00 to 04,Maori,Dermatitis_and_eczema,12,178,Waitemata,Jun-20
+110,00 to 04,Pacific,Dermatitis_and_eczema,19,467,Waitemata,Jun-20
+111,00 to 04,Total_Waitemata,Dermatitis_and_eczema,48,120,Waitemata,Jun-20
+112,00 to 04,Other,Constipation,29,99,Waitemata,Jun-20
+113,00 to 04,Maori,Constipation,10,148,Waitemata,Jun-20
+114,00 to 04,Pacific,Constipation,5,123,Waitemata,Jun-20
+115,00 to 04,Total_Waitemata,Constipation,44,110,Waitemata,Jun-20
+116,00 to 04,Other,GORD,15,51,Waitemata,Jun-20
+117,00 to 04,Maori,GORD,0,0,Waitemata,Jun-20
+118,00 to 04,Pacific,GORD,0,0,Waitemata,Jun-20
+119,00 to 04,Total_Waitemata,GORD,15,37,Waitemata,Jun-20
+120,00 to 04,Other,Asthma,330,1800,Auckland,Jun-19
+121,00 to 04,Maori,Asthma,104,3077,Auckland,Jun-19
+122,00 to 04,Pacific,Asthma,197,4603,Auckland,Jun-19
+123,00 to 04,Total_Auck,Asthma,631,2428,Auckland,Jun-19
+124,00 to 04,Other,Upper_respiratory_infections,215,1173,Auckland,Jun-19
+125,00 to 04,Maori,Upper_respiratory_infections,48,1420,Auckland,Jun-19
+126,00 to 04,Pacific,Upper_respiratory_infections,108,2523,Auckland,Jun-19
+127,00 to 04,Total_Auck,Upper_respiratory_infections,371,1427,Auckland,Jun-19
+128,00 to 04,Other,Gastroenteritis/dehydration,211,1151,Auckland,Jun-19
+129,00 to 04,Maori,Gastroenteritis/dehydration,30,888,Auckland,Jun-19
+130,00 to 04,Pacific,Gastroenteritis/dehydration,78,1822,Auckland,Jun-19
+131,00 to 04,Total_Auck,Gastroenteritis/dehydration,319,1227,Auckland,Jun-19
+132,00 to 04,Other,Pneumonia,96,524,Auckland,Jun-19
+133,00 to 04,Maori,Pneumonia,25,740,Auckland,Jun-19
+134,00 to 04,Pacific,Pneumonia,94,2196,Auckland,Jun-19
+135,00 to 04,Total_Auck,Pneumonia,215,827,Auckland,Jun-19
+136,00 to 04,Other,Dental_conditions,93,507,Auckland,Jun-19
+137,00 to 04,Maori,Dental_conditions,29,858,Auckland,Jun-19
+138,00 to 04,Pacific,Dental_conditions,65,1519,Auckland,Jun-19
+139,00 to 04,Total_Auck,Dental_conditions,187,720,Auckland,Jun-19
+140,00 to 04,Other,Cellulitis,68,371,Auckland,Jun-19
+141,00 to 04,Maori,Cellulitis,16,473,Auckland,Jun-19
+142,00 to 04,Pacific,Cellulitis,65,1519,Auckland,Jun-19
+143,00 to 04,Total_Auck,Cellulitis,149,573,Auckland,Jun-19
+144,00 to 04,Other,Lower_respiratory_infections,40,218,Auckland,Jun-19
+145,00 to 04,Maori,Lower_respiratory_infections,8,237,Auckland,Jun-19
+146,00 to 04,Pacific,Lower_respiratory_infections,40,935,Auckland,Jun-19
+147,00 to 04,Total_Auck,Lower_respiratory_infections,88,339,Auckland,Jun-19
+148,00 to 04,Other,Constipation,38,207,Auckland,Jun-19
+149,00 to 04,Maori,Constipation,2,59,Auckland,Jun-19
+150,00 to 04,Pacific,Constipation,6,140,Auckland,Jun-19
+151,00 to 04,Total_Auck,Constipation,46,177,Auckland,Jun-19
+152,00 to 04,Other,Dermatitis_and_eczema,15,82,Auckland,Jun-19
+153,00 to 04,Maori,Dermatitis_and_eczema,5,148,Auckland,Jun-19
+154,00 to 04,Pacific,Dermatitis_and_eczema,18,421,Auckland,Jun-19
+155,00 to 04,Total_Auck,Dermatitis_and_eczema,38,146,Auckland,Jun-19
+156,00 to 04,Other,GORD,8,44,Auckland,Jun-19
+157,00 to 04,Maori,GORD,1,30,Auckland,Jun-19
+158,00 to 04,Pacific,GORD,0,0,Auckland,Jun-19
+159,00 to 04,Total_Auck,GORD,9,35,Auckland,Jun-19
+160,00 to 04,Other,Upper_respiratory_infections,235,1171,Counties_Manukau,Jun-19
+161,00 to 04,Maori,Upper_respiratory_infections,119,1172,Counties_Manukau,Jun-19
+162,00 to 04,Pacific,Upper_respiratory_infections,303,2619,Counties_Manukau,Jun-19
+163,00 to 04,Total_Counties,Upper_respiratory_infections,657,1572,Counties_Manukau,Jun-19
+164,00 to 04,Other,Asthma,158,787,Counties_Manukau,Jun-19
+165,00 to 04,Maori,Asthma,131,1291,Counties_Manukau,Jun-19
+166,00 to 04,Pacific,Asthma,250,2161,Counties_Manukau,Jun-19
+167,00 to 04,Total_Counties,Asthma,539,1290,Counties_Manukau,Jun-19
+168,00 to 04,Other,Gastroenteritis/dehydration,177,882,Counties_Manukau,Jun-19
+169,00 to 04,Maori,Gastroenteritis/dehydration,80,788,Counties_Manukau,Jun-19
+170,00 to 04,Pacific,Gastroenteritis/dehydration,162,1400,Counties_Manukau,Jun-19
+171,00 to 04,Total_Counties,Gastroenteritis/dehydration,419,1003,Counties_Manukau,Jun-19
+172,00 to 04,Other,Dental_conditions,103,513,Counties_Manukau,Jun-19
+173,00 to 04,Maori,Dental_conditions,68,670,Counties_Manukau,Jun-19
+174,00 to 04,Pacific,Dental_conditions,141,1219,Counties_Manukau,Jun-19
+175,00 to 04,Total_Counties,Dental_conditions,312,747,Counties_Manukau,Jun-19
+176,00 to 04,Other,Pneumonia,54,269,Counties_Manukau,Jun-19
+177,00 to 04,Maori,Pneumonia,71,700,Counties_Manukau,Jun-19
+178,00 to 04,Pacific,Pneumonia,167,1443,Counties_Manukau,Jun-19
+179,00 to 04,Total_Counties,Pneumonia,292,699,Counties_Manukau,Jun-19
+180,00 to 04,Other,Cellulitis,55,274,Counties_Manukau,Jun-19
+181,00 to 04,Maori,Cellulitis,75,739,Counties_Manukau,Jun-19
+182,00 to 04,Pacific,Cellulitis,150,1296,Counties_Manukau,Jun-19
+183,00 to 04,Total_Counties,Cellulitis,280,670,Counties_Manukau,Jun-19
+184,00 to 04,Other,Lower_respiratory_infections,40,199,Counties_Manukau,Jun-19
+185,00 to 04,Maori,Lower_respiratory_infections,60,591,Counties_Manukau,Jun-19
+186,00 to 04,Pacific,Lower_respiratory_infections,69,596,Counties_Manukau,Jun-19
+187,00 to 04,Total_Counties,Lower_respiratory_infections,169,404,Counties_Manukau,Jun-19
+188,00 to 04,Other,Dermatitis_and_eczema,17,85,Counties_Manukau,Jun-19
+189,00 to 04,Maori,Dermatitis_and_eczema,14,138,Counties_Manukau,Jun-19
+190,00 to 04,Pacific,Dermatitis_and_eczema,46,398,Counties_Manukau,Jun-19
+191,00 to 04,Total_Counties,Dermatitis_and_eczema,77,184,Counties_Manukau,Jun-19
+192,00 to 04,Other,Constipation,19,95,Counties_Manukau,Jun-19
+193,00 to 04,Maori,Constipation,5,49,Counties_Manukau,Jun-19
+194,00 to 04,Pacific,Constipation,8,69,Counties_Manukau,Jun-19
+195,00 to 04,Total_Counties,Constipation,32,77,Counties_Manukau,Jun-19
+196,00 to 04,Other,GORD,12,60,Counties_Manukau,Jun-19
+197,00 to 04,Maori,GORD,3,30,Counties_Manukau,Jun-19
+198,00 to 04,Pacific,GORD,2,17,Counties_Manukau,Jun-19
+199,00 to 04,Total_Counties,GORD,17,41,Counties_Manukau,Jun-19
+200,00 to 04,Other,Asthma,293,1001,Waitemata,Jun-19
+201,00 to 04,Maori,Asthma,150,2273,Waitemata,Jun-19
+202,00 to 04,Pacific,Asthma,85,2136,Waitemata,Jun-19
+203,00 to 04,Total_Waitemata,Asthma,528,1325,Waitemata,Jun-19
+204,00 to 04,Other,Upper_respiratory_infections,333,1138,Waitemata,Jun-19
+205,00 to 04,Maori,Upper_respiratory_infections,66,1000,Waitemata,Jun-19
+206,00 to 04,Pacific,Upper_respiratory_infections,98,2462,Waitemata,Jun-19
+207,00 to 04,Total_Waitemata,Upper_respiratory_infections,497,1247,Waitemata,Jun-19
+208,00 to 04,Other,Gastroenteritis/dehydration,306,1045,Waitemata,Jun-19
+209,00 to 04,Maori,Gastroenteritis/dehydration,62,939,Waitemata,Jun-19
+210,00 to 04,Pacific,Gastroenteritis/dehydration,62,1558,Waitemata,Jun-19
+211,00 to 04,Total_Waitemata,Gastroenteritis/dehydration,430,1079,Waitemata,Jun-19
+212,00 to 04,Other,Pneumonia,152,519,Waitemata,Jun-19
+213,00 to 04,Maori,Pneumonia,50,758,Waitemata,Jun-19
+214,00 to 04,Pacific,Pneumonia,94,2362,Waitemata,Jun-19
+215,00 to 04,Total_Waitemata,Pneumonia,296,743,Waitemata,Jun-19
+216,00 to 04,Other,Cellulitis,74,253,Waitemata,Jun-19
+217,00 to 04,Maori,Cellulitis,50,758,Waitemata,Jun-19
+218,00 to 04,Pacific,Cellulitis,70,1759,Waitemata,Jun-19
+219,00 to 04,Total_Waitemata,Cellulitis,194,487,Waitemata,Jun-19
+220,00 to 04,Other,Dental_conditions,95,325,Waitemata,Jun-19
+221,00 to 04,Maori,Dental_conditions,41,621,Waitemata,Jun-19
+222,00 to 04,Pacific,Dental_conditions,41,1030,Waitemata,Jun-19
+223,00 to 04,Total_Waitemata,Dental_conditions,177,444,Waitemata,Jun-19
+224,00 to 04,Other,Lower_respiratory_infections,67,229,Waitemata,Jun-19
+225,00 to 04,Maori,Lower_respiratory_infections,28,424,Waitemata,Jun-19
+226,00 to 04,Pacific,Lower_respiratory_infections,33,829,Waitemata,Jun-19
+227,00 to 04,Total_Waitemata,Lower_respiratory_infections,128,321,Waitemata,Jun-19
+228,00 to 04,Other,Dermatitis_and_eczema,13,44,Waitemata,Jun-19
+229,00 to 04,Maori,Dermatitis_and_eczema,13,197,Waitemata,Jun-19
+230,00 to 04,Pacific,Dermatitis_and_eczema,18,452,Waitemata,Jun-19
+231,00 to 04,Total_Waitemata,Dermatitis_and_eczema,44,110,Waitemata,Jun-19
+232,00 to 04,Other,Constipation,25,85,Waitemata,Jun-19
+233,00 to 04,Maori,Constipation,3,45,Waitemata,Jun-19
+234,00 to 04,Pacific,Constipation,3,75,Waitemata,Jun-19
+235,00 to 04,Total_Waitemata,Constipation,31,78,Waitemata,Jun-19
+236,00 to 04,Other,GORD,11,38,Waitemata,Jun-19
+237,00 to 04,Maori,GORD,4,61,Waitemata,Jun-19
+238,00 to 04,Pacific,GORD,1,25,Waitemata,Jun-19
+239,00 to 04,Total_Waitemata,GORD,16,40,Waitemata,Jun-19
+</div>
+    </body>
+</html>
